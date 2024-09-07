@@ -2,30 +2,23 @@
 
 using namespace std;
 
-bool sumZero(int x0, int x1) {
-	int sum=0;
-	while (x0 != x1+1) {
-		sum += x0;
-		x0++;
+bool equalProduct(int x0, int x1, int x2, int x3) {
+	if (((x0 < 0 && x1>0) || (x0 > 0 && x1 < 0)) && ((x2 < 0 && x3>0) || (x2 > 0 && x3 < 0)) || (x0>=0 && x1>=0 && (x2>=0 && x3>=0 || x2<0 && x3<0)) || (x0 < 0 && x1 < 0 && (x2 > 0 && x3 > 0 || x2 < 0 && x3 < 0))) {
+		if (x0 / x3 == x2 / x1 && x0 / x2 == x3 / x1)
+			return true;
 	}
-	return sum == 0;
-}
-bool sumZero2Option(int x0, int x1) {
-	return x0 + x1 == 0;
+	return false;
+
 }
 
-int main(){
+int main() {
 	setlocale(LC_ALL, "Russian");
-	int x0=1, x1=0;
-	cout << "Введите промежуток  [x0;x1]"<<endl;
-	while (x0 > x1) {
-		cout << "Напоминание: x0 должно быть МЕНЬШЕ, чем x1" << endl;
-		cin >> x0 >> x1;
-	}
-	if (sumZero(x0, x1)) {
-		cout << "Сумма чисел на промежутке [" << x0 << ":" << x1 << "] равна нулю";
+	int x0, x1, x2, x3;
+	cout << "Введите 4 числа:" << endl;
+	cin >> x0 >> x1 >> x2 >> x3;
+	if (equalProduct(x0, x1, x2, x3)) {
+		cout << "Произведение " << x0 << " * " << x1 << " = " << x2 << " * " << x3;
 	}
 	else
-		cout << "Сумма чисел на промежутке [" << x0 << ":" << x1 << "] не равна нулю";
-
+		cout << "Произведение " << x0 << " * " << x1 << " НЕ равняется " << x2 << "*" << x3;	
 }
